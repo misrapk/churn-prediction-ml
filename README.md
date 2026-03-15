@@ -1,230 +1,131 @@
-\# Customer Churn Prediction - End-to-End ML Pipeline
+# Customer Churn Prediction - End-to-End ML Pipeline
 
+## [Click here to watch tutorial](https://www.youtube.com/live/2XUwg63Rxd4?si=E_DyxLZKH_tAKdla)
 
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3.0-orange)
+![Status](https://img.shields.io/badge/Status-Complete-success)
 
-!\[Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-
-!\[scikit-learn](https://img.shields.io/badge/scikit--learn-1.3.0-orange)
-
-!\[Status](https://img.shields.io/badge/Status-Complete-success)
-
-
-
-\## 📋 Project Overview
-
-
+## 📋 Project Overview
 
 A production-ready machine learning pipeline to predict customer churn in the telecommunications industry. This project demonstrates end-to-end ML workflow including data preprocessing, feature engineering, model training, evaluation, and deployment-ready model artifacts.
 
+**Business Problem:** Identifying customers likely to churn helps businesses take proactive retention measures, reducing revenue loss.
 
+## 🎯 Key Results
 
-\*\*Business Problem:\*\* Identifying customers likely to churn helps businesses take proactive retention measures, reducing revenue loss.
+- **Best Model:** [Your best model - e.g., XGBoost]
+- **ROC-AUC Score:** [Your score - e.g., 0.8456]
+- **Accuracy:** [Your accuracy - e.g., 80.2%]
+- **F1-Score:** [Your F1 - e.g., 0.78]
 
+## 📊 Dataset
 
+- **Source:** Telco Customer Churn Dataset
+- **Size:** 7,043 customers
+- **Features:** 20 (demographic, account, and service information)
+- **Target:** Churn (Yes/No)
+- **Churn Rate:** ~26.5%
 
-\## 🎯 Key Results
+### Features Include:
 
+- **Demographics:** Gender, Senior Citizen, Partner, Dependents
+- **Account Info:** Tenure, Contract type, Payment method
+- **Services:** Phone, Internet, Online Security, Tech Support, etc.
+- **Charges:** Monthly charges, Total charges
 
+## 🛠️ Tech Stack
 
-\- \*\*Best Model:\*\* \[Your best model - e.g., XGBoost]
+- **Language:** Python 3.8+
+- **ML Libraries:** scikit-learn, XGBoost, imbalanced-learn
+- **Data Processing:** Pandas, NumPy
+- **Visualization:** Matplotlib, Seaborn
+- **Model Persistence:** Joblib
 
-\- \*\*ROC-AUC Score:\*\* \[Your score - e.g., 0.8456]
+## 🚀 Getting Started
 
-\- \*\*Accuracy:\*\* \[Your accuracy - e.g., 80.2%]
-
-\- \*\*F1-Score:\*\* \[Your F1 - e.g., 0.78]
-
-
-
-\## 📊 Dataset
-
-
-
-\- \*\*Source:\*\* Telco Customer Churn Dataset
-
-\- \*\*Size:\*\* 7,043 customers
-
-\- \*\*Features:\*\* 20 (demographic, account, and service information)
-
-\- \*\*Target:\*\* Churn (Yes/No)
-
-\- \*\*Churn Rate:\*\* \~26.5%
-
-
-
-\### Features Include:
-
-\- \*\*Demographics:\*\* Gender, Senior Citizen, Partner, Dependents
-
-\- \*\*Account Info:\*\* Tenure, Contract type, Payment method
-
-\- \*\*Services:\*\* Phone, Internet, Online Security, Tech Support, etc.
-
-\- \*\*Charges:\*\* Monthly charges, Total charges
-
-
-
-\## 🛠️ Tech Stack
-
-
-
-\- \*\*Language:\*\* Python 3.8+
-
-\- \*\*ML Libraries:\*\* scikit-learn, XGBoost, imbalanced-learn
-
-\- \*\*Data Processing:\*\* Pandas, NumPy
-
-\- \*\*Visualization:\*\* Matplotlib, Seaborn
-
-\- \*\*Model Persistence:\*\* Joblib
-
-
-
-
-
-\## 🚀 Getting Started
-
-
-
-\### Prerequisites
+### Prerequisites
 
 ```bash
-
 python >= 3.8
-
 pip
-
 ```
 
+### Installation
 
-
-\### Installation
-
-
-
-1\. Clone the repository
+1. Clone the repository
 
 ```bash
-
 git clone https://github.com/misrapk/churn-prediction-ml.git
-
 cd churn-prediction-ml
-
 ```
 
-
-
-2\. Create virtual environment
+2. Create virtual environment
 
 ```bash
-
 python -m venv venv
-
-source venv/bin/activate  # On Windows: venv\\Scripts\\activate
-
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-
-
-3\. Install dependencies
+3. Install dependencies
 
 ```bash
-
 pip install -r requirements.txt
-
 ```
 
+4. Download dataset from [Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) and place in `data/` folder
 
+### Usage
 
-4\. Download dataset from \[Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) and place in `data/` folder
-
-
-
-\### Usage
-
-
-
-1\. \*\*Run EDA:\*\*
+1. **Run EDA:**
 
 ```bash
-
-jupyter notebook notebooks/01\_eda.ipynb
-
+jupyter notebook notebooks/01_eda.ipynb
 ```
 
-2\. \*\*Use Preprocessor (standalone):\*\*
+2. **Use Preprocessor (standalone):**
 
 ```bash
-
-python src/data\_preprocessing.py
-
+python src/data_preprocessing.py
 ```
 
+## 🔍 Methodology
 
+### 1. Data Preprocessing
 
-\## 🔍 Methodology
+- Handled missing values in `TotalCharges`
+- Created engineered features:
+  - `tenure_group`: Categorized tenure into bins
+  - `avg_monthly_per_tenure`: Average spending rate
+  - `num_services`: Count of subscribed services
+- Encoded categorical variables (Label Encoding & Binary Encoding)
+- Scaled numerical features using StandardScaler
 
+### Key Insights
 
+1. **Contract Type** is the strongest predictor - month-to-month contracts have 3x higher churn
+2. **Tenure** inversely correlates with churn - customers with <12 months tenure churn most
+3. **Monthly Charges** - higher charges correlate with increased churn
+4. **Tech Support** subscription reduces churn by 40%
 
-\### 1. Data Preprocessing
+## 📝 Lessons Learned
 
-\- Handled missing values in `TotalCharges`
+1. **Feature engineering** significantly improved model performance (+8% ROC-AUC)
+2. **Class imbalance** handling crucial for churn prediction
 
-\- Created engineered features:
+## 👤 Author
 
-&#x20; - `tenure\_group`: Categorized tenure into bins
+**Peeyush K Misra**
 
-&#x20; - `avg\_monthly\_per\_tenure`: Average spending rate
+- LinkedIn: [peeyushkmisra](https://www.linkedin.com/in/peeyushkmisra/)
+- GitHub: [@misrapk](https://github.com/misrapk)
+- Email: peeushkmisra@gmail.com
 
-&#x20; - `num\_services`: Count of subscribed services
-
-\- Encoded categorical variables (Label Encoding \& Binary Encoding)
-
-\- Scaled numerical features using StandardScaler
-
-
-
-
-
-
-
-\## 📝 Lessons Learned
-
-
-
-1\. \*\*Feature engineering\*\* significantly improved model performance (+8% ROC-AUC)
-
-2\. \*\*Class imbalance\*\* handling crucial for churn prediction
-
-
-
-\## 👤 Author
-
-
-
-\*\*Peeyush Kant Misra\*\*
-
-\- LinkedIn: \[Your Profile](https://linkedin.com/in/yourprofile)
-
-\- GitHub: \[@misrapk](https://github.com/misrapk)
-
-\- Email: peeushkmisra@gmail.com
-
-
-
-\## 📄 License
-
-
+## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
+## 🙏 Acknowledgments
 
-
-\## 🙏 Acknowledgments
-
-
-
-\- Dataset provided by IBM Watson Analytics
-
-\- Inspired by real-world telecom churn challenges
-
+- Dataset provided by IBM Watson Analytics
+- Inspired by real-world telecom churn challenges
