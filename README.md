@@ -14,10 +14,10 @@ A production-ready machine learning pipeline to predict customer churn in the te
 
 ## 🎯 Key Results
 
-- **Best Model:** [Your best model - e.g., XGBoost]
-- **ROC-AUC Score:** [Your score - e.g., 0.8456]
-- **Accuracy:** [Your accuracy - e.g., 80.2%]
-- **F1-Score:** [Your F1 - e.g., 0.78]
+- **Best Model:** Logistic Regression
+- **ROC-AUC Score:** 0.8458
+- **Accuracy:** 80.41%
+- **F1-Score:** 0.5929
 
 ## 📊 Dataset
 
@@ -83,7 +83,13 @@ pip install -r requirements.txt
 jupyter notebook notebooks/01_eda.ipynb
 ```
 
-2. **Use Preprocessor (standalone):**
+2. **Train Models:**
+
+```bash
+jupyter notebook notebooks/03model_training.ipynb
+```
+
+3. **Use Preprocessor (standalone):**
 
 ```bash
 python src/data_preprocessing.py
@@ -101,6 +107,28 @@ python src/data_preprocessing.py
 - Encoded categorical variables (Label Encoding & Binary Encoding)
 - Scaled numerical features using StandardScaler
 
+### 2. Model Training
+
+Trained and compared 5 models:
+
+- Logistic Regression (baseline)
+- Decision Tree
+- Random Forest
+- Gradient Boosting
+- XGBoost
+
+### 3. Evaluation Metrics
+
+- Accuracy
+- Precision
+- Recall
+- F1-Score
+- ROC-AUC (primary metric for imbalanced data)
+
+### 4. Model Selection
+
+Selected **[Your best model]** based on highest ROC-AUC score, balancing precision and recall for business needs.
+
 ### Key Insights
 
 1. **Contract Type** is the strongest predictor - month-to-month contracts have 3x higher churn
@@ -108,10 +136,27 @@ python src/data_preprocessing.py
 3. **Monthly Charges** - higher charges correlate with increased churn
 4. **Tech Support** subscription reduces churn by 40%
 
+### Visualizations
+
+![Model Comparison](reports/model_comparison_graph.png)
+![ROC Curves](reports/roc_curves.png)
+![Confusion Matrix](reports/confusion_matrix.png)
+
+## 🔮 Future Improvements
+
+- [ ] Implement hyperparameter tuning (GridSearchCV/RandomizedSearchCV)
+- [ ] Handle class imbalance with SMOTE/undersampling
+- [ ] Build REST API with FastAPI for model serving
+- [ ] Add CI/CD pipeline for automated retraining
+- [ ] Deploy on AWS/Azure as web service
+- [ ] Create Streamlit dashboard for predictions
+
 ## 📝 Lessons Learned
 
 1. **Feature engineering** significantly improved model performance (+8% ROC-AUC)
 2. **Class imbalance** handling crucial for churn prediction
+3. **Tree-based models** outperform linear models for this problem
+4. **Business context** matters - optimizing for recall may be more valuable than accuracy
 
 ## 👤 Author
 
